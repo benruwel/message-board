@@ -1,0 +1,628 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type AddCategoryPayload {
+  category(filter: CategoryFilter, first: Int, offset: Int, order: CategoryOrder): [Category]
+  numUids: Int
+}
+
+type AddCommentPayload {
+  comment(filter: CommentFilter, first: Int, offset: Int, order: CommentOrder): [Comment]
+  numUids: Int
+}
+
+type AddPostPayload {
+  numUids: Int
+  post(filter: PostFilter, first: Int, offset: Int, order: PostOrder): [Post]
+}
+
+type AddUserPayload {
+  numUids: Int
+  user(filter: UserFilter, first: Int, offset: Int, order: UserOrder): [User]
+}
+
+type Category {
+  id: ID!
+  name: String!
+  posts(filter: PostFilter, first: Int, offset: Int, order: PostOrder): [Post!]
+  postsAggregate(filter: PostFilter): PostAggregateResult
+}
+
+type CategoryAggregateResult {
+  count: Int
+  nameMax: String
+  nameMin: String
+}
+
+type Comment {
+  author(filter: UserFilter): User!
+  commentsOn(filter: PostFilter): Post!
+  id: ID!
+  text: String!
+}
+
+type CommentAggregateResult {
+  count: Int
+  textMax: String
+  textMin: String
+}
+
+type DeleteCategoryPayload {
+  category(filter: CategoryFilter, first: Int, offset: Int, order: CategoryOrder): [Category]
+  msg: String
+  numUids: Int
+}
+
+type DeleteCommentPayload {
+  comment(filter: CommentFilter, first: Int, offset: Int, order: CommentOrder): [Comment]
+  msg: String
+  numUids: Int
+}
+
+type DeletePostPayload {
+  msg: String
+  numUids: Int
+  post(filter: PostFilter, first: Int, offset: Int, order: PostOrder): [Post]
+}
+
+type DeleteUserPayload {
+  msg: String
+  numUids: Int
+  user(filter: UserFilter, first: Int, offset: Int, order: UserOrder): [User]
+}
+
+type MultiPolygon {
+  polygons: [Polygon!]!
+}
+
+type Mutation {
+  addCategory(input: [AddCategoryInput!]!): AddCategoryPayload
+  addComment(input: [AddCommentInput!]!): AddCommentPayload
+  addPost(input: [AddPostInput!]!): AddPostPayload
+  addUser(input: [AddUserInput!]!, upsert: Boolean): AddUserPayload
+  deleteCategory(filter: CategoryFilter!): DeleteCategoryPayload
+  deleteComment(filter: CommentFilter!): DeleteCommentPayload
+  deletePost(filter: PostFilter!): DeletePostPayload
+  deleteUser(filter: UserFilter!): DeleteUserPayload
+  updateCategory(input: UpdateCategoryInput!): UpdateCategoryPayload
+  updateComment(input: UpdateCommentInput!): UpdateCommentPayload
+  updatePost(input: UpdatePostInput!): UpdatePostPayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+}
+
+type Point {
+  latitude: Float!
+  longitude: Float!
+}
+
+type PointList {
+  points: [Point!]!
+}
+
+type Polygon {
+  coordinates: [PointList!]!
+}
+
+type Post {
+  author(filter: UserFilter): User!
+  category(filter: CategoryFilter): Category!
+  comments(filter: CommentFilter, first: Int, offset: Int, order: CommentOrder): [Comment!]
+  commentsAggregate(filter: CommentFilter): CommentAggregateResult
+  datePublished: DateTime
+  id: ID!
+  tags: String
+  text: String!
+  title: String!
+}
+
+type PostAggregateResult {
+  count: Int
+  datePublishedMax: DateTime
+  datePublishedMin: DateTime
+  tagsMax: String
+  tagsMin: String
+  textMax: String
+  textMin: String
+  titleMax: String
+  titleMin: String
+}
+
+type Query {
+  aggregateCategory(filter: CategoryFilter): CategoryAggregateResult
+  aggregateComment(filter: CommentFilter): CommentAggregateResult
+  aggregatePost(filter: PostFilter): PostAggregateResult
+  aggregateUser(filter: UserFilter): UserAggregateResult
+  getCategory(id: ID!): Category
+  getComment(id: ID!): Comment
+  getPost(id: ID!): Post
+  getUser(username: String!): User
+  queryCategory(filter: CategoryFilter, first: Int, offset: Int, order: CategoryOrder): [Category]
+  queryComment(filter: CommentFilter, first: Int, offset: Int, order: CommentOrder): [Comment]
+  queryPost(filter: PostFilter, first: Int, offset: Int, order: PostOrder): [Post]
+  queryUser(filter: UserFilter, first: Int, offset: Int, order: UserOrder): [User]
+}
+
+type UpdateCategoryPayload {
+  category(filter: CategoryFilter, first: Int, offset: Int, order: CategoryOrder): [Category]
+  numUids: Int
+}
+
+type UpdateCommentPayload {
+  comment(filter: CommentFilter, first: Int, offset: Int, order: CommentOrder): [Comment]
+  numUids: Int
+}
+
+type UpdatePostPayload {
+  numUids: Int
+  post(filter: PostFilter, first: Int, offset: Int, order: PostOrder): [Post]
+}
+
+type UpdateUserPayload {
+  numUids: Int
+  user(filter: UserFilter, first: Int, offset: Int, order: UserOrder): [User]
+}
+
+type User {
+  avatarImg: String
+  comments(filter: CommentFilter, first: Int, offset: Int, order: CommentOrder): [Comment!]
+  commentsAggregate(filter: CommentFilter): CommentAggregateResult
+  displayName: String
+  posts(filter: PostFilter, first: Int, offset: Int, order: PostOrder): [Post!]
+  postsAggregate(filter: PostFilter): PostAggregateResult
+  username: String!
+}
+
+type UserAggregateResult {
+  avatarImgMax: String
+  avatarImgMin: String
+  count: Int
+  displayNameMax: String
+  displayNameMin: String
+  usernameMax: String
+  usernameMin: String
+}
+
+enum CategoryHasFilter {
+  name
+  posts
+}
+
+enum CategoryOrderable {
+  name
+}
+
+enum CommentHasFilter {
+  author
+  commentsOn
+  text
+}
+
+enum CommentOrderable {
+  text
+}
+
+enum DgraphIndex {
+  bool
+  day
+  exact
+  float
+  fulltext
+  geo
+  hash
+  hour
+  int
+  int64
+  month
+  regexp
+  term
+  trigram
+  year
+}
+
+enum HTTPMethod {
+  DELETE
+  GET
+  PATCH
+  POST
+  PUT
+}
+
+enum Mode {
+  BATCH
+  SINGLE
+}
+
+enum PostHasFilter {
+  author
+  category
+  comments
+  datePublished
+  tags
+  text
+  title
+}
+
+enum PostOrderable {
+  datePublished
+  tags
+  text
+  title
+}
+
+enum UserHasFilter {
+  avatarImg
+  comments
+  displayName
+  posts
+  username
+}
+
+enum UserOrderable {
+  avatarImg
+  displayName
+  username
+}
+
+input AddCategoryInput {
+  name: String!
+  posts: [PostRef!]
+}
+
+input AddCommentInput {
+  author: UserRef!
+  commentsOn: PostRef!
+  text: String!
+}
+
+input AddPostInput {
+  author: UserRef!
+  category: CategoryRef!
+  comments: [CommentRef!]
+  datePublished: DateTime
+  tags: String
+  text: String!
+  title: String!
+}
+
+input AddUserInput {
+  avatarImg: String
+  comments: [CommentRef!]
+  displayName: String
+  posts: [PostRef!]
+  username: String!
+}
+
+input AuthRule {
+  and: [AuthRule]
+  not: AuthRule
+  or: [AuthRule]
+  rule: String
+}
+
+input CategoryFilter {
+  and: [CategoryFilter]
+  has: [CategoryHasFilter]
+  id: [ID!]
+  name: StringTermFilter
+  not: CategoryFilter
+  or: [CategoryFilter]
+}
+
+input CategoryOrder {
+  asc: CategoryOrderable
+  desc: CategoryOrderable
+  then: CategoryOrder
+}
+
+input CategoryPatch {
+  name: String
+  posts: [PostRef!]
+}
+
+input CategoryRef {
+  id: ID
+  name: String
+  posts: [PostRef!]
+}
+
+input CommentFilter {
+  and: [CommentFilter]
+  has: [CommentHasFilter]
+  id: [ID!]
+  not: CommentFilter
+  or: [CommentFilter]
+}
+
+input CommentOrder {
+  asc: CommentOrderable
+  desc: CommentOrderable
+  then: CommentOrder
+}
+
+input CommentPatch {
+  author: UserRef
+  commentsOn: PostRef
+  text: String
+}
+
+input CommentRef {
+  author: UserRef
+  commentsOn: PostRef
+  id: ID
+  text: String
+}
+
+input ContainsFilter {
+  point: PointRef
+  polygon: PolygonRef
+}
+
+input CustomHTTP {
+  body: String
+  forwardHeaders: [String!]
+  graphql: String
+  introspectionHeaders: [String!]
+  method: HTTPMethod!
+  mode: Mode
+  secretHeaders: [String!]
+  skipIntrospection: Boolean
+  url: String!
+}
+
+input DateTimeFilter {
+  between: DateTimeRange
+  eq: DateTime
+  ge: DateTime
+  gt: DateTime
+  in: [DateTime]
+  le: DateTime
+  lt: DateTime
+}
+
+input DateTimeRange {
+  max: DateTime!
+  min: DateTime!
+}
+
+input FloatFilter {
+  between: FloatRange
+  eq: Float
+  ge: Float
+  gt: Float
+  in: [Float]
+  le: Float
+  lt: Float
+}
+
+input FloatRange {
+  max: Float!
+  min: Float!
+}
+
+input GenerateMutationParams {
+  add: Boolean
+  delete: Boolean
+  update: Boolean
+}
+
+input GenerateQueryParams {
+  aggregate: Boolean
+  get: Boolean
+  password: Boolean
+  query: Boolean
+}
+
+input Int64Filter {
+  between: Int64Range
+  eq: Int64
+  ge: Int64
+  gt: Int64
+  in: [Int64]
+  le: Int64
+  lt: Int64
+}
+
+input Int64Range {
+  max: Int64!
+  min: Int64!
+}
+
+input IntFilter {
+  between: IntRange
+  eq: Int
+  ge: Int
+  gt: Int
+  in: [Int]
+  le: Int
+  lt: Int
+}
+
+input IntRange {
+  max: Int!
+  min: Int!
+}
+
+input IntersectsFilter {
+  multiPolygon: MultiPolygonRef
+  polygon: PolygonRef
+}
+
+input MultiPolygonRef {
+  polygons: [PolygonRef!]!
+}
+
+input NearFilter {
+  coordinate: PointRef!
+  distance: Float!
+}
+
+input PointGeoFilter {
+  near: NearFilter
+  within: WithinFilter
+}
+
+input PointListRef {
+  points: [PointRef!]!
+}
+
+input PointRef {
+  latitude: Float!
+  longitude: Float!
+}
+
+input PolygonGeoFilter {
+  contains: ContainsFilter
+  intersects: IntersectsFilter
+  near: NearFilter
+  within: WithinFilter
+}
+
+input PolygonRef {
+  coordinates: [PointListRef!]!
+}
+
+input PostFilter {
+  and: [PostFilter]
+  has: [PostHasFilter]
+  id: [ID!]
+  not: PostFilter
+  or: [PostFilter]
+  tags: StringTermFilter
+  text: StringFullTextFilter
+  title: StringTermFilter
+}
+
+input PostOrder {
+  asc: PostOrderable
+  desc: PostOrderable
+  then: PostOrder
+}
+
+input PostPatch {
+  author: UserRef
+  category: CategoryRef
+  comments: [CommentRef!]
+  datePublished: DateTime
+  tags: String
+  text: String
+  title: String
+}
+
+input PostRef {
+  author: UserRef
+  category: CategoryRef
+  comments: [CommentRef!]
+  datePublished: DateTime
+  id: ID
+  tags: String
+  text: String
+  title: String
+}
+
+input StringExactFilter {
+  between: StringRange
+  eq: String
+  ge: String
+  gt: String
+  in: [String]
+  le: String
+  lt: String
+}
+
+input StringFullTextFilter {
+  alloftext: String
+  anyoftext: String
+}
+
+input StringHashFilter {
+  eq: String
+  in: [String]
+}
+
+input StringRange {
+  max: String!
+  min: String!
+}
+
+input StringRegExpFilter {
+  regexp: String
+}
+
+input StringTermFilter {
+  allofterms: String
+  anyofterms: String
+}
+
+input UpdateCategoryInput {
+  filter: CategoryFilter!
+  remove: CategoryPatch
+  set: CategoryPatch
+}
+
+input UpdateCommentInput {
+  filter: CommentFilter!
+  remove: CommentPatch
+  set: CommentPatch
+}
+
+input UpdatePostInput {
+  filter: PostFilter!
+  remove: PostPatch
+  set: PostPatch
+}
+
+input UpdateUserInput {
+  filter: UserFilter!
+  remove: UserPatch
+  set: UserPatch
+}
+
+input UserFilter {
+  and: [UserFilter]
+  has: [UserHasFilter]
+  not: UserFilter
+  or: [UserFilter]
+  username: StringHashFilter
+}
+
+input UserOrder {
+  asc: UserOrderable
+  desc: UserOrderable
+  then: UserOrder
+}
+
+input UserPatch {
+  avatarImg: String
+  comments: [CommentRef!]
+  displayName: String
+  posts: [PostRef!]
+}
+
+input UserRef {
+  avatarImg: String
+  comments: [CommentRef!]
+  displayName: String
+  posts: [PostRef!]
+  username: String
+}
+
+input WithinFilter {
+  polygon: PolygonRef!
+}
+
+
+"""
+The DateTime scalar type represents date and time as a string in RFC3339 format.
+For example: "1985-04-12T23:20:50.52Z" represents 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC.
+"""
+scalar DateTime
+
+"""
+The Int64 scalar type represents a signed 64‐bit numeric non‐fractional value.
+Int64 can represent values in range [-(2^63),(2^63 - 1)].
+"""
+scalar Int64

@@ -7,7 +7,10 @@
     "start": "ng serve & ngtw watch",
     "build": "ngtw build && ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
+    "storybook": "npm run docs:json && start-storybook -p 6006",
+    "build-storybook": "npm run docs:json && build-storybook"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~12.0.2",
     "@angular/router": "~12.0.2",
     "@apollo/client": "^3.3.20",
+    "@tailwindcss/forms": "^0.3.3",
     "apollo-angular": "^2.6.0",
     "autoprefixer": "^10.2.6",
     "graphql": "^15.5.0",
@@ -32,14 +36,22 @@
     "@angular-devkit/build-angular": "~12.0.2",
     "@angular/cli": "~12.0.2",
     "@angular/compiler-cli": "~12.0.2",
+    "@babel/core": "^7.14.6",
+    "@compodoc/compodoc": "^1.1.11",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/angular": "^6.2.9",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "babel-loader": "^8.2.2",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "prettier": "2.1.2",
     "tailwindcss": "^2.1.4",
     "typescript": "~4.2.3"
   }

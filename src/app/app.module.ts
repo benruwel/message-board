@@ -7,10 +7,26 @@ import { AppComponent } from './app.component';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
+import { HomeComponent } from './containers/home/home.component';
+import { LayoutComponent } from './containers/layout/layout.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
+import { PostComponent } from './containers/post/post.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LayoutComponent,
+    PostCardComponent,
+    PostComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     {
       provide: APOLLO_OPTIONS,
@@ -18,7 +34,8 @@ import { HttpLink } from 'apollo-angular/http';
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'https://green-waterfall.eu-central-1.aws.cloud.dgraph.io/graphql',
+            uri:
+              'https://green-waterfall.eu-central-1.aws.cloud.dgraph.io/graphql',
           }),
         };
       },

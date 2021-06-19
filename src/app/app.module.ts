@@ -12,6 +12,8 @@ import { LayoutComponent } from './containers/layout/layout.component';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostComponent } from './containers/post/post.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreatePostComponent } from './containers/create-post/create-post.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutComponent,
     PostCardComponent,
     PostComponent,
+    CreatePostComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

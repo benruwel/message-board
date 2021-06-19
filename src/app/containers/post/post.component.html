@@ -1,1 +1,26 @@
-<p>post works!</p>
+<section>
+  <div *ngIf="post$ | async as post" class="my-6">
+    <h1 class="font-bold tracking-wider text-2xl">{{ post.title }}</h1>
+    <div class="flex flex-row space-x-4 mt-6">
+      <div class="h-14 w-14 rounded-full bg-purple-700 flex-shrink-0"></div>
+      <div class="flex-1 flex flex-col">
+        <p class="text-sm text-gray-400">{{ post.author.username }}</p>
+        <p class="text-sm text-gray-400">{{ post.datePublished | date }}</p>
+      </div>
+    </div>
+
+    <hr class="my-4 border-t-2 border-gray-600 rounded-full" />
+
+    <div class="mt-6">
+      <p class="leading-relaxed tracking-wider text-lg">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </div>
+  </div>
+</section>

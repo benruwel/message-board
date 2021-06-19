@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { PostsResponse } from './posts.model';
+import { PostsModel, PostsResponse } from './posts.model';
 import { map } from 'rxjs/internal/operators/map';
 
 const GET_ALL_POSTS = gql`
@@ -68,5 +68,11 @@ export class PostsService {
           };
         })
       );
+  }
+
+  getPostById(postId: string): Observable<PostsModel> {
+    return this.getAllPostsResponse.pipe(
+      map((res) => res.posts.filter((item) => item.id === postId).pop())
+    );
   }
 }

@@ -1,6 +1,7 @@
 export interface PostsModel {
   id: string;
   title: string;
+  text: string;
   tags: string[];
   datePublished: Date | null;
   category: {

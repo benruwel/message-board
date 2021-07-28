@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {
+  TuiDataListModule,
+  TuiHostedDropdownModule,
+  TuiRootModule,
+} from '@taiga-ui/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APOLLO_OPTIONS } from 'apollo-angular';
@@ -30,6 +36,10 @@ import { LoaderComponent } from './components/loader/loader.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    TuiRootModule,
+    TuiHostedDropdownModule,
+    TuiDataListModule,
   ],
   providers: [
     {

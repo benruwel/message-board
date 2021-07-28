@@ -10,6 +10,48 @@
       >
         Create Post
       </button>
+      <tui-hosted-dropdown [content]="dropdown" [(open)]="open">
+        <button
+          tuiHostedDropdownHost
+          class="relative w-8 h-8 text-primary focus:text-indigo-600 focus:outline-none"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="currentColor"
+              d="M21.379 16.913A6.698 6.698 0 0119 11.788V9c0-3.519-2.614-6.432-6-6.92V1a1 1 0 10-2 0v1.08C7.613 2.568 5 5.481 5 9v2.788a6.705 6.705 0 01-2.388 5.133A1.752 1.752 0 003.75 20h16.5c.965 0 1.75-.785 1.75-1.75 0-.512-.223-.996-.621-1.337zM12 24a3.756 3.756 0 003.674-3H8.326A3.756 3.756 0 0012 24z"
+            />
+          </svg>
+          <ng-container *ngIf="(messages$ | async) as messages">
+            <div
+              class="absolute top-0 right-0 w-4 h-4 rounded-lg font-bold text-xs bg-green-200 text-green-800"
+            >
+              <p>{{ messages.length }}</p>
+            </div>
+          </ng-container>
+        </button>
+      </tui-hosted-dropdown>
+      <ng-template #dropdown>
+        <div
+          class="flex flex-col space-y-4 p-4 m-4 w-96 bg-baltic-sea text-white rounded-lg shadow-xl"
+        >
+          <div class="border-b border-gray-600 py-2 font-semibold">
+            <p>Notifications</p>
+          </div>
+          <ng-container *ngIf="(messages$ | async) as messages">
+            <ng-container *ngIf="messages.length <= 0">
+              <p>You don't have any notifications</p>
+            </ng-container>
+            <ng-container *ngIf="messages.length > 0">
+              <div *ngFor="let message of messages" class="flex flex-row p-2 rounded-md cursor-pointer hover:bg-black hover:bg-opacity-20">
+                <p class="flex-1">{{ message.message }}</p>
+                <p class="text-sm text-gray-400">{{ message.timestamp | date : 'shortTime' }}</p>
+              </div>
+            </ng-container>
+          </ng-container>
+
+        </div>
+      </ng-template>
+
       <div class="w-8 h-8 bg-indigo-400 rounded-full"></div>
     </div>
   </header>

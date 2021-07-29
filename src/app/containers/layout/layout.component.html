@@ -42,7 +42,7 @@
               <p>You don't have any notifications</p>
             </ng-container>
             <ng-container *ngIf="messages.length > 0">
-              <div *ngFor="let message of messages" class="flex flex-row p-2 rounded-md cursor-pointer hover:bg-black hover:bg-opacity-20">
+              <div *ngFor="let message of messages" class="flex flex-row space-x-2 p-2 rounded-md cursor-pointer hover:bg-black hover:bg-opacity-20">
                 <p class="flex-1">{{ message.message }}</p>
                 <p class="text-sm text-gray-400">{{ message.timestamp | date : 'shortTime' }}</p>
               </div>
